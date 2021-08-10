@@ -1,32 +1,32 @@
 import { useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
 import '../styles/home.scss';
-import api from '../services/api'
-import { FormEvent } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { Button } from '../components/Button';
 
 export function Home() {
-    const [planetName, setPlanetName] = useState('');
+    const { user, signInWithGoogle } = useAuth();
     const history = useHistory();
 
-    async function handleSubmit(event: FormEvent) {
-        event.preventDefault();
+    async function handleCreatePlanet() {
+        if (!user) {
+            await signInWithGoogle();
+        }
 
-        await api.post('/planets', {
-            planetName: planetName,
-        });
+        history.push('/planets/new');
+    }
 
-        history.push('/planets');
+    async function handleCreateAirship() {
+        if (!user) {
+            await signInWithGoogle();
+        }
+
+        history.push('/airship/new');
     }
 
     return (
         <div className="home-content">
-            <form onSubmit={handleSubmit}>
-                <input placeholder="Nome Planeta"
-                    value={planetName}
-                    onChange={e => setPlanetName(e.target.value)}
-                />
-                <button type="submit">Enviar</button>
-            </form>
+            <Button type="button" onClick={handleCreatePlanet}>Criar Planeta</Button>
+            <Button type="button" onClick={handleCreateAirship}>Criar Nave</Button>
         </div>
     );
 };
