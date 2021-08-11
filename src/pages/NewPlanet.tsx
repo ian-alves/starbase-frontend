@@ -18,10 +18,11 @@ export function NewPlanet() {
         }
 
         await api.post('/planets', {
-            planetName: planetName,
+            authorId: user?.id,
+            planetName: planetName
         });
 
-        history.push('/planets');
+        history.push('/planets/list');
     }
 
     return (

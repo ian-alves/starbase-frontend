@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
-import '../styles/list-planets.scss';
+import '../styles/list.scss';
 
 type Planet = {
     _id: string;
@@ -12,16 +12,16 @@ export function ListPlanets() {
     const [planets, setPlanets] = useState<Planet[]>();
 
     useEffect(() => {
-        async function loadUsers() {
+        async function loadPlanets() {
             const response = await api.get('/planets')
 
             setPlanets(response.data);
         }
-        loadUsers();
+        loadPlanets();
     })
 
     return (
-        <div className="planet-content">
+        <div className="list-content">
             <ul>
                 {planets?.map(planet => (
                     <li key={planet._id}>

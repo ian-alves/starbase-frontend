@@ -20,7 +20,7 @@ export function Home() {
             await signInWithGoogle();
         }
 
-        history.push('/airship/new');
+        history.push('/airships/new');
     }
 
     return (

@@ -1,31 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
-import '../styles/list-planets.scss';
+import '../styles/list.scss';
 
-type Planet = {
+type Airship = {
     _id: string;
     name: string;
+    capacity: number;
 }
 
 export function ListAirships() {
-    const [planets, setPlanets] = useState<Planet[]>();
+    const [airships, setAirships] = useState<Airship[]>();
 
     useEffect(() => {
-        async function loadUsers() {
-            const response = await api.get('/planets')
+        async function loadAirships() {
+            const response = await api.get('/airships')
 
-            setPlanets(response.data);
+            setAirships(response.data);
         }
-        loadUsers();
+        loadAirships();
     })
 
     return (
-        <div className="planet-content">
+        <div className="list-content">
             <ul>
-                {planets?.map(planet => (
-                    <li key={planet._id}>
-                        {planet.name}
+                {airships?.map(airship => (
+                    <li key={airship._id}>
+                        {airship.name}
                     </li>
                 ))}
             </ul>
