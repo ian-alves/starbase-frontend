@@ -19,7 +19,7 @@ export function ListAirships() {
             setAirships(response.data);
         }
         loadAirships();
-    })
+    }, [])
 
     return (
         <div className="list-content">

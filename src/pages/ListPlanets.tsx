@@ -18,7 +18,7 @@ export function ListPlanets() {
             setPlanets(response.data);
         }
         loadPlanets();
-    })
+    }, [])
 
     return (
         <div className="list-content">
