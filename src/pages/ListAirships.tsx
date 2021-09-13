@@ -1,25 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../services/api';
+import { useAirships } from '../hooks/useAirships';
 import '../styles/list.scss';
 
-type Airship = {
-    _id: string;
-    name: string;
-    capacity: number;
-}
-
 export function ListAirships() {
-    const [airships, setAirships] = useState<Airship[]>();
-
-    useEffect(() => {
-        async function loadAirships() {
-            const response = await api.get('/airships')
-
-            setAirships(response.data);
-        }
-        loadAirships();
-    }, [])
+    const { airships } = useAirships();
 
     return (
         <div className="list-content">
