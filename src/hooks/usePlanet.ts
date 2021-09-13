@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
-type Airship = {
+type Planet = {
     _id: string;
     name: string;
-    capacity: number;
 }
 
-export function useAirships() {
-    const [airships, setAirships] = useState<Airship[]>([]);
+export function usePlanet() {
+    const [planets, setPlanets] = useState<Planet[]>([]);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
 
     const fetchData = () => {
         api
-            .get('/airships')
+            .get('/planets')
             .then((res) => {
-                setAirships(res.data);
+                setPlanets(res.data);
             })
             .catch((err) => {
                 setError(err);
@@ -30,5 +29,5 @@ export function useAirships() {
         fetchData();
     }, []);
 
-    return { airships, error, loading };
+    return { planets, error, loading };
 }

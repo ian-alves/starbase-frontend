@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { usePlanets } from '../hooks/usePlanets';
+import { usePlanet } from '../hooks/usePlanet';
 import '../styles/list.scss';
 
 export function ListPlanets() {
-    const { planets } = usePlanets();
+    const { planets } = usePlanet();
 
     return (
         <div className="list-content">

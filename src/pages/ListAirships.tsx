@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useAirships } from '../hooks/useAirships';
+import { useAirship } from '../hooks/useAirship';
 import '../styles/list.scss';
 
 export function ListAirships() {
-    const { airships } = useAirships();
+    const { airships } = useAirship();
 
     return (
         <div className="list-content">
